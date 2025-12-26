@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Event Listeners Practical Assignment</title>
+
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+  }
+
+  #box {
+    width: 250px;
+    height: 140px;
+    background: lightblue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    margin-top: 20px;
+    font-size: 20px;
+    transition: 0.3s;
+  }
+
+  button {
+    padding: 10px 16px;
+    margin-right: 10px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+
+  button:hover {
+    background: #004e9c;
+  }
+</style>
+</head>
+<body>
+
+<h2>Event Listeners Practical Assignment</h2>
+
+<button id="startBtn">Start Events</button>
+<button id="stopBtn">Stop Events</button>
+
+<div id="box">Hover or Press Keys</div>
+
+<script>
+  const box = document.getElementById("box");
+
+  // Mouse event functions
+  function onMouseEnter() {
+    box.style.background = "orange";
+    box.innerText = "Mouse Entered!";
+  }
+
+  function onMouseLeave() {
+    box.style.background = "lightblue";
+    box.innerText = "Mouse Left!";
+  }
+
+  // Keyboard event function
+  function onKeyPress(event) {
+    box.innerText = "Key Pressed: " + event.key;
+  }
+
+  // Add event listeners
+  document.getElementById("startBtn").addEventListener("click", () => {
+    box.addEventListener("mouseenter", onMouseEnter);
+    box.addEventListener("mouseleave", onMouseLeave);
+    window.addEventListener("keydown", onKeyPress);
+
+    box.style.background = "lightblue";
+    box.innerText = "Events Activated";
+  });
+
+  // Remove event listeners
+  document.getElementById("stopBtn").addEventListener("click", () => {
+    box.removeEventListener("mouseenter", onMouseEnter);
+    box.removeEventListener("mouseleave", onMouseLeave);
+    window.removeEventListener("keydown", onKeyPress);
+
+    box.style.background = "gray";
+    box.innerText = "Events Removed";
+  });
+</script>
+
+</body>
+</html>
